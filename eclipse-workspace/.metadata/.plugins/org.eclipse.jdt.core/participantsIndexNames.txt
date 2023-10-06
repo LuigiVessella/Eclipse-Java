@@ -1,0 +1,7 @@
+INDEX VERSION 1.131
+C:\Users\vesse\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2839045119.index
+\FirstJSP\src\main\java
+C:\Users\vesse\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2340607529.index
+\FirstServletExercise\src\main\java
+C:\Users\vesse\eclipse-workspace\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1568134745.index
+\EsercizioJSP\src\main\java

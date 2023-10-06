@@ -1,0 +1,51 @@
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+
+public class MainController {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		String indirizzo = "http://localhost:8080/admin/addNew";
+		URLConnection con;
+		HttpURLConnection http;
+		URL url;
+		byte[] out = " {\"nome\":\"mario\", \"cognome\":\"caso\", \"partita_iva\":\"T5R44\"} ".getBytes(StandardCharsets.UTF_8);
+
+		
+		
+		try {
+			url = new URL(indirizzo);
+			con = url.openConnection();
+			http = (HttpURLConnection)con;
+			http.setRequestMethod("POST");
+			http.setDoOutput(true);
+			
+			http.setFixedLengthStreamingMode(out.length);
+			http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+			
+			http.connect();
+			try(OutputStream os = http.getOutputStream()){
+				os.write(out);
+			}
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("ho fatto\n");
+		
+		
+
+	}
+
+}

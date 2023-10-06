@@ -1,0 +1,58 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+
+public class MainController {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		String indirizzo = "http://localhost:8080/admin/addNew";
+		URLConnection con;
+		HttpURLConnection http;
+		URL url;
+		byte[] out = " {\"partitaIva\":\"T5R44\", \"nome\":\"mario\", \"cognome\":\"caso\"} ".getBytes(StandardCharsets.UTF_8);
+
+		
+		
+		try {
+			url = new URL(indirizzo);
+			con = url.openConnection();
+			http = (HttpURLConnection)con;
+			http.setRequestMethod("POST");
+			http.setDoOutput(true);
+			
+			http.setFixedLengthStreamingMode(out.length);
+			http.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+			
+			http.connect();
+			System.out.println("sono qui");
+			try(OutputStream os = http.getOutputStream()){
+				System.out.println("ho scritto");
+				os.write(out);
+			}
+			
+			try(InputStream in = http.getInputStream()) {
+				System.out.println(in.readAllBytes());
+			}
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("ho fatto\n");
+		
+		
+
+	}
+
+}
